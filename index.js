@@ -1,8 +1,15 @@
+// Created Modules
 const inquirer = require('inquirer')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
+
+// Var for prompt
 var listOfTeamMembers = []
+
+// Write file
+// const {writeFile, copyFile } = require('')
+
 
 // false.writeFile('index.html', generatePage(), err => {
 //     if (err) throw err;
@@ -72,6 +79,7 @@ var listOfTeamMembers = []
         ]).then(answers =>{
             console.log(answers);
             let newIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+            listOfTeamMembers.push(newIntern)
             menu()
         })
     }
@@ -104,6 +112,7 @@ var listOfTeamMembers = []
         ]).then(answers =>{
             console.log(answers);
             let newEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
+            listOfTeamMembers.push(newEngineer)
             menu()
         })
     }
@@ -132,16 +141,9 @@ function menu() {
 }
 
 managerInformation()
-// generate managers, engineers
-// create new file for that to generate functions
 
-// 1. 
-// Where do I add the push function? 
-// I tried adding .push(listOfTeamMembers) after the 
-// new Engineer function.
 
 // 2.
 // once user selects DONE, 
 // HTML needs to generate. 
-// I'm not asking how, but 
 // WHERE do I add this function?
