@@ -1,1 +1,4 @@
 README
+This back-end project uses inquirer to ask someone to fill out data which includes a team of employees' information.
+It uses jest to make sure the creation of each employee field runs properly. 
+Since it is not a deployed project, here is a video showing how it functions: https://drive.google.com/file/d/1eWdUF2SRlp1mFT8Q4ZHy4ByFMHek7Y91/view
