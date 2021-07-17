@@ -3,12 +3,17 @@ const inquirer = require('inquirer')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
+const generateSite = require('./utils/generate-site')
+
+const fs = require('fs')
+
+
 
 // Var for prompt
 var listOfTeamMembers = []
 
 // Write file
-// const {writeFile, copyFile } = require('')
+// const {writeFile, copyFile } = require('generate-site.js')
 
 
 // false.writeFile('index.html', generatePage(), err => {
@@ -117,33 +122,45 @@ var listOfTeamMembers = []
         })
     }
     
-function menu() {
-    inquirer.prompt({
-        type: 'list',
-        name: 'menuChoice',
-        message: 'Who do you want to add?',
-        choices: ['intern','engineer', 'none']
-    }).then(menuAnswers => {
-        if (menuAnswers.menuChoice === 'intern') {
-            internInformation()
-        } 
-
-        else if (menuAnswers.menuChoice === 'engineer') {
-            engineerInformation()
-        } 
-
-        else {
-            console.log('done') 
+    
+    function menu() {
+        inquirer.prompt({
+            type: 'list',
+            name: 'menuChoice',
+            message: 'Who do you want to add?',
+            choices: ['intern','engineer', 'none']
+        }).then(menuAnswers => {
+            if (menuAnswers.menuChoice === 'intern') {
+                internInformation()
+            } 
             
+            else if (menuAnswers.menuChoice === 'engineer') {
+                engineerInformation()
+            } 
+            
+            else {
+                // call function in here
+            const siteHtml = generateSite(listOfTeamMembers)
+            fs.writeFile('./dist/index.html', siteHtml, err => {
+                if (err) throw err;
+                console.log('done') 
+            })
+
         }
-        
     });
 }
+
+// function generateSite(listOfTeamMembers) {
+//     return writeFile(pageHTML)
+
+// }
 
 managerInformation()
 
 
-// 2.
-// once user selects DONE, 
-// HTML needs to generate. 
-// WHERE do I add this function?
+
+// function to take in listofteammembers
+// at the end of function, return string to write to file.
+// 1 function for 1 string
+
+// function to write file after string
